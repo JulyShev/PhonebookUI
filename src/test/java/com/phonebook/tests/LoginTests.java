@@ -28,5 +28,4 @@ public class LoginTests extends TestBase {
             app.getUser().clickLoginButton();
             Assert.assertTrue(app.getUser().isAlertDisplayed());
         }
-
 }

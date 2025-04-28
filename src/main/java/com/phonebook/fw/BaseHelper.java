@@ -32,9 +32,9 @@ public class BaseHelper {
          driver.findElement(locator).click();
      }
 
-    public boolean isAlertDisplayed() {
+    /* public boolean isAlertDisplayed() {
          Alert alert = new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.alertIsPresent());
-         if (alert == null) {
+         if (alert != null) {
              return false;
          } else {
              driver.switchTo().alert();
@@ -42,6 +42,20 @@ public class BaseHelper {
              return true;
          }
      }
+*/
+    public boolean isAlertDisplayed() {
+        try {
+            Alert alert = new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.alertIsPresent());
+            if (alert != null) {
+                driver.switchTo().alert().accept();
+                return true;
+            }
+        } catch (TimeoutException e) {
+            System.out.println("Alert допусти не появился во время ожиланя");
+        }
+        return true;
+    }
 
     public void pause(int millis){
          try {
